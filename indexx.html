@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- ============ METADATOS Y RECURSOS ============ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TRAMA SHOP | Camisetas</title>
+  <meta name="description" content="Tienda de camisetas con estética brutalista. Busca, filtra y arma tu carrito.">
+
+  <!-- Tipografías: Anton (títulos condensados) y Space Mono (etiquetas, precios, botones) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styless.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Enlace para saltar directo al catálogo (accesibilidad con teclado) -->
+  <a class="saltar" href="#catalogo">Saltar al catálogo</a>
+
+  <!-- ============ SELLO FESTIVO ============
+       Se dibuja desde script.js según la fecha o lo elegido en el panel de administración.
+       Sobresale por el borde superior derecho de la página. -->
+  <div class="sello" id="sello"></div>
+
+  <div class="pagina">
+    <!-- ============ ENCABEZADO ============ -->
+    <header class="encabezado">
+      <div class="encabezado__superior">
+        <a class="logo" href="./" aria-label="TRAMA SHOP, ir al inicio">
+          <span class="logo__nombre">
+            <span class="logo__palabra">TRAMA</span><span class="logo__shop">SHOP</span>
+          </span>
+          <span class="logo__sub">EXPLORAR</span>
+        </a>
+
+        <!-- Botón del carrito (abre el panel lateral) -->
+        <button type="button" class="boton boton-carrito" id="abrir-carrito" aria-haspopup="dialog" aria-label="Abrir carrito, 0 artículos">
+          <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="boton-carrito__texto">CARRITO</span>
+          <span class="boton-carrito__contador" id="carrito-contador">0</span>
+        </button>
+      </div>
+
+      <!-- Título principal + buscador -->
+      <div class="encabezado__titulo">
+        <h1 class="titulo" id="titulo-catalogo">TODO</h1>
+
+        <form class="buscador" id="form-busqueda" role="search">
+          <label class="sr-only" for="busqueda">Buscar productos por nombre o categoría</label>
+          <svg class="icono buscador__lupa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          <input class="buscador__campo" id="busqueda" type="search" placeholder="BUSQUEDA..." autocomplete="off" spellcheck="false">
+          <button type="button" class="buscador__limpiar" id="limpiar-busqueda" aria-label="Limpiar búsqueda" hidden>
+            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19"/></svg>
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============ FILTROS ============ -->
+      <section class="filtros" aria-label="Filtros del catálogo">
+        <!-- Filtro por categoría -->
+        <div class="filtros__categorias" role="group" aria-label="Categoría">
+          <button type="button" class="filtro is-activo" data-categoria="todo" aria-pressed="true">TODO</button>
+          <button type="button" class="filtro" data-categoria="clasico" aria-pressed="false">CLÁSICO</button>
+          <button type="button" class="filtro" data-categoria="brights" aria-pressed="false">BRIGHTS</button>
+        </div>
+
+        <!-- Filtros adicionales: talla, color, precio y orden -->
+        <div class="filtros__extra">
+          <div class="control">
+            <span class="control__etiqueta" id="etiqueta-talla">TALLA</span>
+            <div class="chips" role="group" aria-labelledby="etiqueta-talla">
+              <button type="button" class="chip" data-talla="S" aria-pressed="false">S</button>
+              <button type="button" class="chip" data-talla="M" aria-pressed="false">M</button>
+              <button type="button" class="chip" data-talla="L" aria-pressed="false">L</button>
+              <button type="button" class="chip" data-talla="XL" aria-pressed="false">XL</button>
+            </div>
+          </div>
+
+          <div class="control">
+            <label class="control__etiqueta" for="filtro-color">COLOR</label>
+            <select class="selector" id="filtro-color">
+              <option value="todos">Todos</option>
+              <option value="azul">Azul</option>
+              <option value="violeta">Violeta</option>
+              <option value="verde">Verde</option>
+              <option value="gris">Gris</option>
+              <option value="naranja">Naranja</option>
+              <option value="negro">Negro</option>
+              <option value="blanco">Blanco</option>
+            </select>
+          </div>
+
+          <div class="control">
+            <label class="control__etiqueta" for="filtro-precio">PRECIO</label>
+            <select class="selector" id="filtro-precio">
+              <option value="todos">Todos</option>
+              <option value="hasta-26">Hasta $26.00</option>
+              <option value="27-30">$27.00 a $30.00</option>
+              <option value="mas-30">Más de $30.00</option>
+            </select>
+          </div>
+
+          <div class="control">
+            <label class="control__etiqueta" for="orden">ORDENAR</label>
+            <select class="selector" id="orden">
+              <option value="destacados">Destacados</option>
+              <option value="precio-asc">Precio: menor a mayor</option>
+              <option value="precio-desc">Precio: mayor a menor</option>
+              <option value="nombre-az">Nombre: A a la Z</option>
+            </select>
+          </div>
+
+          <button type="button" class="enlace-boton" id="limpiar-filtros" hidden>LIMPIAR FILTROS</button>
+        </div>
+      </section>
+
+      <!-- Línea negra que separa los filtros del catálogo -->
+      <hr class="separador">
+
+      <p class="resultado" id="resultado" role="status" aria-live="polite"></p>
+
+      <!-- ============ CATÁLOGO ============
+           Las tarjetas se generan desde script.js -->
+      <ul class="catalogo" id="catalogo"></ul>
+
+      <!-- Estado "sin resultados" -->
+      <div class="vacio" id="sin-resultados" hidden>
+        <p class="vacio__titulo">SIN RESULTADOS</p>
+        <p class="vacio__texto">Ninguna camiseta coincide con tu búsqueda o filtros. Prueba con otra palabra o quita algún filtro.</p>
+        <button type="button" class="boton boton--primario" id="reiniciar-todo">QUITAR BÚSQUEDA Y FILTROS</button>
+      </div>
+
+      <noscript><p class="vacio__texto">Esta tienda necesita JavaScript para mostrar los productos.</p></noscript>
+    </main>
+
+    <!-- ============ PIE DE PÁGINA ============ -->
+    <footer class="pie">
+      <p class="pie__texto">TRAMA SHOP. Tienda de demostración: aún no procesa pagos ni pedidos.</p>
+      <button type="button" class="enlace-boton" id="abrir-admin">ADMINISTRAR</button>
+    </footer>
+  </div>
+
+  <!-- ============ AVISO TEMPORAL (confirmaciones) ============ -->
+  <div class="aviso" id="aviso" role="status" hidden></div>
+
+  <!-- ============ MODAL DE DETALLE DE PRODUCTO ============
+       Usa <dialog>: el navegador gestiona el foco y la tecla Escape. -->
+  <dialog class="panel panel--modal" id="modal-producto" aria-labelledby="modal-titulo">
+    <div class="modal">
+      <button type="button" class="modal__cerrar" data-cerrar aria-label="Cerrar detalle del producto">
+        <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+
+      <div class="modal__imagen" id="modal-imagen"></div>
+
+      <div class="modal__info">
+        <p class="etiqueta" id="modal-categoria"></p>
+        <h2 class="modal__titulo" id="modal-titulo"></h2>
+        <p class="modal__precio" id="modal-precio"></p>
+        <p class="modal__descripcion" id="modal-descripcion"></p>
+
+        <fieldset class="tallas">
+          <legend class="control__etiqueta">ELIGE TU TALLA</legend>
+          <div class="tallas__opciones" id="modal-tallas"></div>
+        </fieldset>
+
+        <p class="modal__error" id="modal-error" role="alert"></p>
+
+        <button type="button" class="boton boton--primario boton--ancho" id="modal-agregar" aria-disabled="true">AGREGAR AL CARRITO</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ============ PANEL LATERAL DEL CARRITO ============ -->
+  <dialog class="panel panel--lateral" id="panel-carrito" aria-labelledby="carrito-titulo">
+    <div class="carrito">
+      <div class="carrito__cabecera">
+        <h2 class="carrito__titulo" id="carrito-titulo">CARRITO</h2>
+        <button type="button" class="modal__cerrar modal__cerrar--fijo" data-cerrar aria-label="Cerrar carrito">
+          <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+      </div>
+
+      <div class="carrito__vacio" id="carrito-vacio">
+        <p class="vacio__titulo">CARRITO VACÍO</p>
+        <p class="vacio__texto">Elige una camiseta, selecciona tu talla y agrégala aquí.</p>
+        <button type="button" class="boton" data-cerrar>SEGUIR VIENDO</button>
+      </div>
+
+      <ul class="carrito__lista" id="carrito-lista"></ul>
+
+      <div class="carrito__pie" id="carrito-pie" hidden>
+        <p class="carrito__subtotal"><span>SUBTOTAL</span><strong id="carrito-subtotal">$0.00</strong></p>
+        <p class="carrito__nota">Esta tienda es una demostración: todavía no procesa pagos ni pedidos.</p>
+        <div class="carrito__acciones">
+          <button type="button" class="boton" id="vaciar-carrito">VACIAR</button>
+          <button type="button" class="boton boton--primario" disabled title="El pago aún no está disponible">PAGO NO DISPONIBLE</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ============ PANEL DE ADMINISTRACIÓN (sello festivo) ============ -->
+  <dialog class="panel panel--modal panel--admin" id="modal-admin" aria-labelledby="admin-titulo">
+    <div class="admin">
+      <div class="carrito__cabecera">
+        <h2 class="carrito__titulo" id="admin-titulo">ADMINISTRAR</h2>
+        <button type="button" class="modal__cerrar modal__cerrar--fijo" data-cerrar aria-label="Cerrar administración">
+          <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+      </div>
+
+      <!-- Paso 1: acceso -->
+      <form class="admin__form" id="admin-login">
+        <label class="control__etiqueta" for="admin-clave">CLAVE DE ADMINISTRADOR</label>
+        <input class="campo" id="admin-clave" type="password" autocomplete="off" required>
+        <p class="modal__error" id="admin-error" role="alert"></p>
+        <button type="submit" class="boton boton--primario boton--ancho">ENTRAR</button>
+      </form>
+
+      <!-- Paso 2: elegir sello festivo -->
+      <form class="admin__form" id="admin-panel" hidden>
+        <fieldset class="tallas">
+          <legend class="control__etiqueta">SELLO FESTIVO DE LA PORTADA</legend>
+          <div class="admin__opciones" id="admin-opciones"></div>
+        </fieldset>
+        <p class="carrito__nota">Automático usa la fecha de hoy: octubre y principios de noviembre Día de Muertos, diciembre Navidad.</p>
+        <button type="submit" class="boton boton--primario boton--ancho">GUARDAR SELLO</button>
+      </form>
+    </div>
+  </dialog>
+</body>
+</html>
