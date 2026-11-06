@@ -12,10 +12,10 @@
                     colors: {
                         palette: {
                             snow: '#FFFBFE',
-                            silver: '#BDBCBE',
-                            grey: '#7A7D7D',
-                            dust: '#D0CFCF',
-                            charcoal: '#565254'
+                            silver: '#adefff',
+                            grey: '#70ddf8',
+                            dust: '#DOCFCF',
+                            charcoal: '#00b7ff' 
                         }
                     }
                 }
@@ -78,7 +78,7 @@
                     <span class="absolute top-3 left-3 bg-red-600 text-white text-xs font-extrabold uppercase px-2.5 py-1 rounded-lg z-10 shadow-sm">
                         ¡Oferta!
                     </span>
-                    <img src="../tienda_ropa/CSS/imagenes/images%20(4).jpg" alt="Producto de catálogo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img src="../tienda_ropa/imagenes/papa.jpg" alt="Producto de catálogo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
                 
                 <div class="p-4 flex flex-col flex-grow bg-white">
@@ -106,7 +106,7 @@
                     <span class="absolute top-3 left-3 bg-palette-charcoal text-white text-xs font-extrabold uppercase px-2.5 py-1 rounded-lg z-10 shadow-sm">
                         Nuevo
                     </span>
-                    <img src="../tienda_ropa/CSS/imagenes/images%20(5).jpg" alt="Producto de catálogo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img src="../tienda_ropa/imagenes/tenis.jpg" alt="Producto de catálogo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
                 <div class="p-4 flex flex-col flex-grow bg-white">
                     <p class="text-xs font-bold text-palette-grey uppercase tracking-wider">Calzado</p>

@@ -35,7 +35,7 @@
         </div>
 
         <nav class="px-10 mt-10">
-            <a href="lista_favoritos.php" class="flex justify-between py-6 border-b border-slate-200 text-blue-500 text-lg">
+            <a href="favoritos.php" class="flex justify-between py-6 border-b border-slate-200 text-blue-500 text-lg">
                 Favoritos <span class="text-xs font-bold">01</span>
             </a>
 

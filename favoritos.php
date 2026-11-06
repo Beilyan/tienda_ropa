@@ -12,10 +12,10 @@
                     colors: {
                         palette: {
                             snow: '#FFFBFE',
-                            silver: '#BDBCBE',
-                            grey: '#7A7D7D',
+                            silver: '#adefff',
+                            grey: '#70ddf8',
                             dust: '#DOCFCF',
-                            charcoal: '#565254' 
+                            charcoal: '#00b7ff' 
                         }
                     }
                 }
@@ -49,7 +49,7 @@
             
             <div class="bg-white rounded-2xl border-2 border-palette-charcoal overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300">
                 <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
-                    <img src="../tienda_ropa/CSS/imagenes/images%20(3).jpg" alt="Pantalones de mezclilla" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
+                    <img src="../tienda_ropa/imagenes/pantalon_mezclilla.jpg" alt="Pantalones de mezclilla" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
                 </div>
                 <div class="p-5 flex flex-col flex-grow bg-white">
                     <h2 class="font-bold text-palette-charcoal text-xl">Pantalones de mezclilla</h2>
@@ -74,7 +74,7 @@
 
             <div class="bg-white rounded-2xl border-2 border-palette-charcoal overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300">
                 <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
-                    <img src="../tienda_ropa/CSS/imagenes/images%20(2).jpg" alt="Cachucha" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
+                    <img src="../tienda_ropa/imagenes/cachucha.jpg" alt="Cachucha" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
                 </div>
                 <div class="p-5 flex flex-col flex-grow bg-white">
                     <h2 class="font-bold text-palette-charcoal text-xl">Cachucha</h2>
@@ -98,7 +98,7 @@
 
             <div class="bg-white rounded-2xl border-2 border-palette-charcoal overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300">
                 <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
-                    <img src="../tienda_ropa/CSS/imagenes/images.jpg" alt="Camisa" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
+                    <img src="../tienda_ropa/imagenes/camisa_hombre.jpg" alt="Camisa" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
                 </div>
                 <div class="p-5 flex flex-col flex-grow bg-white">
                     <h2 class="font-bold text-palette-charcoal text-xl">Camisa</h2>
@@ -122,7 +122,7 @@
 
             <div class="bg-white rounded-2xl border-2 border-palette-charcoal overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300">
                 <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
-                    <img src="../tienda_ropa/CSS/imagenes/descarga%20(1).jpg" alt="Camisa de mujer" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
+                    <img src="../tienda_ropa/imagenes/camisa_de_mujer.jpg" alt="Camisa de mujer" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
                 </div>
                 <div class="p-5 flex flex-col flex-grow bg-white">
                     <h2 class="font-bold text-palette-charcoal text-xl">Camisa de mujer</h2>
@@ -146,7 +146,7 @@
 
             <div class="bg-white rounded-2xl border-2 border-palette-charcoal overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300">
                 <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
-                    <img src="imagenes/descarga.jpg" alt="Pantalon de mujer" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
+                    <img src="../tienda_ropa/imagenes/pantalon_de_mujer.jpg" alt="Pantalon de mujer" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
                 </div>
                 <div class="p-5 flex flex-col flex-grow bg-white">
                     <h2 class="font-bold text-palette-charcoal text-xl">Pantalón de mujer</h2>
@@ -170,7 +170,7 @@
 
             <div class="bg-white rounded-2xl border-2 border-palette-charcoal overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300">
                 <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
-                    <img src="../tienda_ropa/CSS/imagenes/images%20(1).jpg" alt="Short de hombre" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
+                    <img src="../tienda_ropa/imagenes/short.jpg" alt="Short de hombre" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
                 </div>
                 <div class="p-5 flex flex-col flex-grow bg-white">
                     <h2 class="font-bold text-palette-charcoal text-xl">Short de hombre</h2>
