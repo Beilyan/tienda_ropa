@@ -35,7 +35,13 @@
         </div>
 
         <nav class="px-10 mt-10">
-            
+            <a href="lista_favoritos.php" class="flex justify-between py-6 border-b border-slate-200 text-blue-500 text-lg">
+                Favoritos <span class="text-xs font-bold">01</span>
+            </a>
+
+            <a href="perfil.html" class="flex justify-between py-6 border-b border-slate-200 text-blue-500 text-lg">
+                Perfil <span class="text-xs font-bold">01</span>
+            </a>
         </nav>
 
         <div class="mt-auto px-10 py-6">
@@ -86,7 +92,7 @@
             </div>
 
             <!-- CARRITO -->
-            <button class="relative w-14 h-14 shrink-0 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100">
+            <a href="indexx.html"><button class="relative w-14 h-14 shrink-0 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100">
 
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                     <path d="M5 8h14l-1 13H6L5 8Z"/>
@@ -96,7 +102,7 @@
                 <span class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
                     0
                 </span>
-            </button>
+            </button></a>
 
         </div>
     </header>

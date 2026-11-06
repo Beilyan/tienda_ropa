@@ -27,22 +27,13 @@
     <header class="bg-white border-b border-palette-charcoal sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center">
-                <a href="#" class="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors">
+                <a href="principal.php" class="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors">
                     ← Volver
                 </a>
             </div>
             
             <div class="text-center">
                 <p class="text-base font-semibold tracking-wide text-gray-800">¡Tu ropa favorita guardada!</p>
-            </div>
-
-            <div class="flex items-center gap-3 bg-gray-50 border border-palette-charcoal px-4 py-1.5 rounded-2xl">
-                <a href="#" class="w-8 h-8 rounded-full bg-palette-silver flex items-center justify-center overflow-hidden hover:opacity-80 transition-opacity">
-                    <svg xmlns="http://w3.org" class="h-5 w-5 text-palette-charcoal" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-                <p class="text-xs font-bold text-palette-charcoal hidden sm:block">Iniciar sesión</p>
             </div>
         </div>
     </header>
@@ -155,7 +146,7 @@
 
             <div class="bg-white rounded-2xl border-2 border-palette-charcoal overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300">
                 <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
-                    <img src="../tienda_ropa/CSS/imagenes/descarga.jpg" alt="Pantalon de mujer" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
+                    <img src="imagenes/descarga.jpg" alt="Pantalon de mujer" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300">
                 </div>
                 <div class="p-5 flex flex-col flex-grow bg-white">
                     <h2 class="font-bold text-palette-charcoal text-xl">Pantalón de mujer</h2>
