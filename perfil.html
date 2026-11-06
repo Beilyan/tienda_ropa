@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- ============ METADATOS Y RECURSOS ============ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TRAMA SHOP | Perfil</title>
+  <meta name="description" content="Perfil de usuario.">
+
+  <!-- Tipografías: Anton (títulos condensados) y Space Mono (etiquetas, precios, botones) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styless.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- Enlace para saltar directo al catálogo (accesibilidad con teclado) -->
+  <a class="saltar" href="#catalogo">Saltar al catálogo</a>
+
+  <!-- ============ SELLO FESTIVO ============
+       Se dibuja desde script.js según la fecha o lo elegido en el panel de administración.
+       Sobresale por el borde superior derecho de la página. -->
+  <div class="sello" id="sello"></div>
+
+  <div class="pagina">
+    <!-- ============ ENCABEZADO ============ -->
+    <header class="encabezado">
+      <div class="encabezado__superior">
+        <a class="logo" href="indexx.html" aria-label="TRAMA SHOP, ir al inicio">
+          <span class="logo__nombre">
+            <span class="logo__palabra">TRAMA</span><span class="logo__shop">SHOP</span>
+          </span>
+          <span class="logo__sub">VER TU</span>
+        </a>
+
+        <!-- Botónes del encabezado -->
+    <div class="encabezado__acciones">
+        <button type="button" class="boton boton-carrito" id="abrir-carrito" aria-haspopup="dialog" aria-label="Abrir carrito, 0 artículos">
+          <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="boton-carrito__texto">CARRITO</span>
+          <span class="boton-carrito__contador" id="carrito-contador">0</span>
+        </button>
+         <a href="perfil.html" class="boton boton-carrito">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user preview-icon">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/></svg>
+          <span class="boton-carrito__texto">PERFIL</span>
+         </a>
+    </div>
+
+     </div>
+      <!-- Título principal -->
+      <div class="encabezado__titulo">
+        <h1 class="titulo" id="titulo-catalogo">PERFIL</h1>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Línea negra que separa los filtros del catálogo -->
+      <hr class="separador">
+      
+      <div>
+        <span>
+      <span class="relleno letra_sub" >Tú nombre</span>  
+        </span>
+        <span class="letra_datos dato_container">"Nombre del usuario..."</span>
+      </div>
+      <div>
+        <span>
+      <span class="relleno letra_sub" >Tú correo</span>  
+        </span>
+        <span class="letra_datos dato_container">"correoUsuario@gmail.com..."</span>
+      </div>
+      <div>
+        <span>
+      <span class="relleno letra_sub" >Tú numero</span>  
+        </span>
+        <span class="letra_datos dato_container">"### #### ####..."</span>
+      </div>
+
+      <div>
+        <span>
+      <span class="relleno letra_sub" >Tu Configuración</span>  
+        </span>
+        <span class="letra_datos dato_container" style="margin-bottom: 10px;">Cambiar contraseña</span>
+        <span class="letra_datos dato_container" style="margin-bottom: 30px;">Notificaciones</span>
+        <a href="login.php" class="blank_link"><span class="relleno_rojo letra_cerrar_sesion">Cerrar sesion</span></a>
+      </div>
+
+    </main>
+
+    <!-- ============ PIE DE PÁGINA ============ -->
+    <footer class="pie">
+      <p class="pie__texto">TRAMA SHOP. Tienda de demostración: aún no procesa pagos ni pedidos.</p>
+      <button type="button" class="enlace-boton" id="abrir-admin">ADMINISTRAR</button>
+    </footer>
+  </div>
+
+  <!-- ============ AVISO TEMPORAL (confirmaciones) ============ -->
+  <div class="aviso" id="aviso" role="status" hidden></div>
+
+  <!-- ============ MODAL DE DETALLE DE PRODUCTO ============
+       Usa <dialog>: el navegador gestiona el foco y la tecla Escape. -->
+  <dialog class="panel panel--modal" id="modal-producto" aria-labelledby="modal-titulo">
+    <div class="modal">
+      <button type="button" class="modal__cerrar" data-cerrar aria-label="Cerrar detalle del producto">
+        <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+
+      <div class="modal__imagen" id="modal-imagen"></div>
+
+      <div class="modal__info">
+        <p class="etiqueta" id="modal-categoria"></p>
+        <h2 class="modal__titulo" id="modal-titulo"></h2>
+        <p class="modal__precio" id="modal-precio"></p>
+        <p class="modal__descripcion" id="modal-descripcion"></p>
+
+        <fieldset class="tallas">
+          <legend class="control__etiqueta">ELIGE TU TALLA</legend>
+          <div class="tallas__opciones" id="modal-tallas"></div>
+        </fieldset>
+
+        <p class="modal__error" id="modal-error" role="alert"></p>
+
+        <button type="button" class="boton boton--primario boton--ancho" id="modal-agregar" aria-disabled="true">AGREGAR AL CARRITO</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ============ PANEL LATERAL DEL CARRITO ============ -->
+  <dialog class="panel panel--lateral" id="panel-carrito" aria-labelledby="carrito-titulo">
+    <div class="carrito">
+      <div class="carrito__cabecera">
+        <h2 class="carrito__titulo" id="carrito-titulo">CARRITO</h2>
+        <button type="button" class="modal__cerrar modal__cerrar--fijo" data-cerrar aria-label="Cerrar carrito">
+          <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+      </div>
+
+      <div class="carrito__vacio" id="carrito-vacio">
+        <p class="vacio__titulo">CARRITO VACÍO</p>
+        <p class="vacio__texto">Elige una camiseta, selecciona tu talla y agrégala aquí.</p>
+        <button type="button" class="boton" data-cerrar>SEGUIR VIENDO</button>
+      </div>
+
+      <ul class="carrito__lista" id="carrito-lista"></ul>
+
+      <div class="carrito__pie" id="carrito-pie" hidden>
+        <p class="carrito__subtotal"><span>SUBTOTAL</span><strong id="carrito-subtotal">$0.00</strong></p>
+        <p class="carrito__nota">Esta tienda es una demostración: todavía no procesa pagos ni pedidos.</p>
+        <div class="carrito__acciones">
+          <button type="button" class="boton" id="vaciar-carrito">VACIAR</button>
+          <button type="button" class="boton boton--primario" disabled title="El pago aún no está disponible">PAGO NO DISPONIBLE</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ============ PANEL DE ADMINISTRACIÓN (sello festivo) ============ -->
+  <dialog class="panel panel--modal panel--admin" id="modal-admin" aria-labelledby="admin-titulo">
+    <div class="admin">
+      <div class="carrito__cabecera">
+        <h2 class="carrito__titulo" id="admin-titulo">ADMINISTRAR</h2>
+        <button type="button" class="modal__cerrar modal__cerrar--fijo" data-cerrar aria-label="Cerrar administración">
+          <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+      </div>
+
+      <!-- Paso 1: acceso -->
+      <form class="admin__form" id="admin-login">
+        <label class="control__etiqueta" for="admin-clave">CLAVE DE ADMINISTRADOR</label>
+        <input class="campo" id="admin-clave" type="password" autocomplete="off" required>
+        <p class="modal__error" id="admin-error" role="alert"></p>
+        <button type="submit" class="boton boton--primario boton--ancho">ENTRAR</button>
+      </form>
+
+      <!-- Paso 2: elegir sello festivo -->
+      <form class="admin__form" id="admin-panel" hidden>
+        <fieldset class="tallas">
+          <legend class="control__etiqueta">SELLO FESTIVO DE LA PORTADA</legend>
+          <div class="admin__opciones" id="admin-opciones"></div>
+        </fieldset>
+        <p class="carrito__nota">Automático usa la fecha de hoy: octubre y principios de noviembre Día de Muertos, diciembre Navidad.</p>
+        <button type="submit" class="boton boton--primario boton--ancho">GUARDAR SELLO</button>
+      </form>
+    </div>
+  </dialog>
+</body>
+</html>

@@ -4,8 +4,8 @@
   <!-- ============ METADATOS Y RECURSOS ============ -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TRAMA SHOP | Camisetas</title>
-  <meta name="description" content="Tienda de camisetas con estética brutalista. Busca, filtra y arma tu carrito.">
+  <title>TRAMA SHOP | Perfil</title>
+  <meta name="description" content="Perfil de usuario.">
 
   <!-- Tipografías: Anton (títulos condensados) y Space Mono (etiquetas, precios, botones) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/styless.css">
   <script src="script.js" defer></script>
 </head>
+
 <body>
   <!-- Enlace para saltar directo al catálogo (accesibilidad con teclado) -->
   <a class="saltar" href="#catalogo">Saltar al catálogo</a>
@@ -32,17 +33,25 @@
           <span class="logo__nombre">
             <span class="logo__palabra">TRAMA</span><span class="logo__shop">SHOP</span>
           </span>
-          <span class="logo__sub">EXPLORAR</span>
+          <span class="logo__sub">VER TU</span>
         </a>
 
+    <div class="encabezado__acciones">
         <!-- Botón del carrito (abre el panel lateral) -->
         <button type="button" class="boton boton-carrito" id="abrir-carrito" aria-haspopup="dialog" aria-label="Abrir carrito, 0 artículos">
           <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
           <span class="boton-carrito__texto">CARRITO</span>
           <span class="boton-carrito__contador" id="carrito-contador">0</span>
         </button>
-      </div>
+         <a href="perfil.html" class="boton boton-carrito">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user preview-icon">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/></svg>
+          <span class="boton-carrito__texto">PERFIL</span>
+         </a>
+    </div>
 
+     </div>
       <!-- Título principal + buscador -->
       <div class="encabezado__titulo">
         <h1 class="titulo" id="titulo-catalogo">TODO</h1>

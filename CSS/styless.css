@@ -129,6 +129,12 @@ h1, h2, p { margin: 0; }
   margin-right: 78px; /* deja libre el espacio del sello */
 }
 
+.encabezado__acciones {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .logo {
   display: inline-flex;
   flex-direction: column;
@@ -744,4 +750,104 @@ h1, h2, p { margin: 0; }
     animation: none !important;
     transition: none !important;
   }
+}
+
+
+/* Para pantalla de ususarios */
+.relleno {
+  padding: 10px 16px;
+  background: var(--menta);
+  color: var(--negro);
+  border: var(--borde);
+  box-shadow: var(--sombra-dura);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  margin-left: .04em;
+}
+
+.relleno_rojo {
+  padding: 10px 16px;
+  background: #ff6057;
+  color: var(--negro);
+  border: var(--borde);
+  box-shadow: var(--sombra-dura);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.blank_link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.dato_container{
+  padding: 10px 16px;
+  background: var(--tarjeta);
+  color: var(--negro);
+  border: var(--borde);
+  box-shadow: var(--sombra-dura);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.letra_sub {
+  font-family: "Space Mono", "Courier New", monospace;
+  font-size: 2.3rem;
+  font-weight: bold;
+  line-height: 1;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.letra_datos {
+  font-family: "Space Mono", "Courier New", monospace;
+  font-size: 2.0rem;
+  font-style: italic;
+  display: block;
+  margin-left: 12px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  line-height: 1;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.letra_cerrar_sesion {
+  font-family: "Space Mono", "Courier New", monospace;
+  font-size: 2.0rem;
+  font-style: italic;
+  margin-left: 12px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  line-height: 1;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+
+/* Datos del perfil */
+.perfil_dato {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+/* Configuración */
+.perfil_configuracion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  margin-top: 40px;
 }
