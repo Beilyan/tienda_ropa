@@ -42,6 +42,10 @@
             <a href="perfil.html" class="flex justify-between py-6 border-b border-slate-200 text-blue-500 text-lg">
                 Perfil <span class="text-xs font-bold">01</span>
             </a>
+
+            <a href="lista_ropa.php" class="flex justify-between py-6 border-b border-slate-200 text-blue-500 text-lg">
+                Lista de ropa <span class="text-xs font-bold">01</span>
+            </a>
         </nav>
 
         <div class="mt-auto px-10 py-6">

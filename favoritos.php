@@ -24,17 +24,101 @@
     </script>
 </head>
 <body class="bg-[#FFFBFE] min-h-screen flex flex-col font-sans antialiased text-gray-900">
-    <header class="bg-white border-b border-palette-charcoal sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center">
-                <a href="principal.php" class="text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors">
-                    ← Volver
-                </a>
+
+    <aside id="menuLateral"
+        class="fixed top-0 left-0 h-screen w-full sm:w-[450px] bg-white z-50 -translate-x-full transition-transform duration-300 flex flex-col">
+
+        <div class="flex justify-between items-center px-10 py-10">
+            <div class="flex items-center gap-4">
+                <svg class="w-8 h-9 text-blue-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 30">
+                    <path d="M12 1 21 6 12 11 3 6 12 1Z"/>
+                    <path d="M3 6v17l9 5V11M21 6v17l-9 5"/>
+                </svg>
+                <span class="text-2xl font-bold tracking-[0.25em]">MODA</span>
             </div>
-            
+
+            <button onclick="cerrarMenu()"
+                class="w-12 h-12 rounded-full bg-slate-100 text-slate-500 text-3xl hover:bg-slate-200">
+                ×
+            </button>
+        </div>
+
+        <nav class="px-10 mt-10">
+            <a href="favoritos.php" class="flex justify-between py-6 border-b border-slate-200 text-blue-500 text-lg">
+                Favoritos <span class="text-xs font-bold">01</span>
+            </a>
+
+            <a href="perfil.html" class="flex justify-between py-6 border-b border-slate-200 text-blue-500 text-lg">
+                Perfil <span class="text-xs font-bold">01</span>
+            </a>
+
+            <a href="lista_ropa.php" class="flex justify-between py-6 border-b border-slate-200 text-blue-500 text-lg">
+                Lista de ropa <span class="text-xs font-bold">01</span>
+            </a>
+        </nav>
+
+        <div class="mt-auto px-10 py-6">
+            <a href="login.php"
+                class="flex justify-between items-center text-slate-500 hover:text-blue-500">
+                Cerrar sesión
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M10 17l5-5-5-5M15 12H3m12-8h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-5"/>
+                </svg>
+            </a>
+        </div>
+    </aside>
+
+    <header class="bg-white border-b border-slate-200 px-6 md:px-16 py-5">
+        <div class="flex items-center justify-between gap-5">
+
+            <!-- BOTÓN MENÚ -->
+            <button onclick="abrirMenu()"
+                class="w-14 h-14 shrink-0 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100">
+
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+
+            <!-- LOGOTIPO -->
+            <div class="hidden sm:flex items-center gap-4">
+                <svg class="w-8 h-9 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 30">
+                    <path d="M12 1 21 6 12 11 3 6 12 1Z"/>
+                    <path d="M3 6v17l9 5V11M21 6v17l-9 5"/>
+                </svg>
+                <span class="text-2xl font-bold tracking-[0.25em]">MODA</span>
+            </div>
+
+            <!-- BUSCADOR -->
+            <div class="flex-1 max-w-2xl relative">
+                <svg class="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"
+                    fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="7"/>
+                    <path d="m16 16 5 5"/>
+                </svg>
+
+                <input type="text"
+                    placeholder="Buscar prendas..."
+                    class="w-full bg-slate-50 border border-slate-200 rounded-full py-5 pl-14 pr-5 outline-none focus:border-blue-400">
+            </div>
+
             <div class="text-center">
                 <p class="text-base font-semibold tracking-wide text-gray-800">¡Tu ropa favorita guardada!</p>
             </div>
+
+            <!-- CARRITO -->
+            <a href="indexx.html"><button class="relative w-14 h-14 shrink-0 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100">
+
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path d="M5 8h14l-1 13H6L5 8Z"/>
+                    <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+                </svg>
+
+                <span class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                    0
+                </span>
+            </button></a>
+
         </div>
     </header>
 
@@ -194,6 +278,23 @@
 
         </div>
     </main>
+
+    <!-- JAVASCRIPT DEL MENÚ -->
+    <script>
+        const menu = document.getElementById('menuLateral');
+        const fondo = document.getElementById('fondoMenu');
+
+        function abrirMenu() {
+            menu.classList.remove('-translate-x-full');
+            fondo.classList.remove('hidden');
+        }
+
+        function cerrarMenu() {
+            menu.classList.add('-translate-x-full');
+            fondo.classList.add('hidden');
+        }
+    </script>
+
     <footer class="bg-white border-t-2 border-palette-charcoal py-8 text-center text-sm text-gray-500 mt-16">
         <div class="max-w-7xl mx-auto px-4 space-y-3">
             <a href="#" class="inline-block text-palette-charcoal font-bold hover:underline tracking-wide bg-palette-dust/30 px-6 py-2 rounded-2xl border border-palette-charcoal">
