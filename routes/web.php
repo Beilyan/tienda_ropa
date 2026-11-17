@@ -27,9 +27,6 @@ return (new Router())
     ->ruta('perfil.php',         [PerfilController::class,    'index'], 'login')
     ->ruta('mis_pedidos.php',    [PedidoController::class,    'misPedidos'], 'login')
 
-    // Instalador (se bloquea solo cuando ya hay un dueño)
-    ->ruta('instalar.php',       [InstaladorController::class, 'instalar'])
-
     // Panel del dueño
     ->ruta('admin/login.php',    [AuthController::class,           'entradaDueno'])   // el dueño entra por login.php
     ->ruta('admin/logout.php',   [AuthController::class,           'logout'])

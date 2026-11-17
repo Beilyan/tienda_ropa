@@ -1,24 +1,17 @@
 <?php
 declare(strict_types=1);
 
-/** Instalación inicial: crea la base de datos, las tablas, la cuenta del dueño y datos de ejemplo. */
-final class Instalador extends Modelo
+/**
+ * PREPARACIÓN AUTOMÁTICA (primera vez que se abre la tienda)
+ * No hay pantalla de instalación: si todavía no existe config/local.php, la tienda se conecta sola a
+ * MySQL con los datos por defecto de AMPPS (config/app.php > base_de_datos), crea la base y las
+ * tablas, la cuenta única del dueño (config/app.php > dueno_inicial) y, si se pide, prendas de ejemplo.
+ * Para empezar de cero: borra la base de datos y el archivo config/local.php.
+ */
+final class Preparacion extends Modelo
 {
-    /** ¿Ya hay una tienda instalada con una cuenta de dueño? Entonces el instalador se bloquea. */
-    public static function yaInstalada(): bool
-    {
-        if (!Config::instalada()) {
-            return false;
-        }
-        try {
-            return (int) self::valor("SELECT COUNT(*) FROM usuarios WHERE rol = 'admin'") > 0;
-        } catch (Throwable) {
-            return false;
-        }
-    }
-
-    /** Prueba los datos de conexión por defecto (config/app.php) y devuelve la conexión que funcione, o null. */
-    private static function conectarAutomatico(): ?array
+    /** Prueba los datos de conexión por defecto y devuelve la conexión que funcione, o null. */
+    private static function conectar(): ?array
     {
         $c = Config::get('app.base_de_datos');
         foreach ($c['puertos'] as $puerto) {
@@ -35,13 +28,12 @@ final class Instalador extends Modelo
     }
 
     /**
-     * Se conecta a MySQL solo, crea la base y las tablas, la cuenta del dueño y el nombre de la
-     * tienda (y los datos de ejemplo si se pide). Devuelve los datos de conexión que funcionaron.
+     * Crea todo lo necesario y guarda config/local.php.
      * @throws RuntimeException con un mensaje claro si algo no se puede hacer
      */
-    public static function instalar(array $v, string $adminClave): array
+    public static function ejecutar(): void
     {
-        $conexion = self::conectarAutomatico();
+        $conexion = self::conectar();
         if ($conexion === null) {
             throw new RuntimeException('No pudimos conectar con la base de datos. Abre AMPPS, enciende MySQL y recarga esta página.');
         }
@@ -51,18 +43,27 @@ final class Instalador extends Modelo
         $pdo->exec('USE `' . $nombreBd . '`');
         self::ejecutarSql($pdo, RAIZ . '/database/schema.sql');
 
-        $pdo->prepare('INSERT INTO usuarios (nombre, email, password_hash, rol) VALUES (?, ?, ?, ?)')
-            ->execute([$v['admin_nombre'], mb_strtolower($v['admin_email']), password_hash($adminClave, PASSWORD_DEFAULT), 'admin']);
-        $pdo->prepare('INSERT INTO ajustes (clave, valor) VALUES (?, ?) ON DUPLICATE KEY UPDATE valor = VALUES(valor)')
-            ->execute(['nombre_tienda', $v['nombre_tienda']]);
-        if ($v['demo'] === '1') {
+        $d = Config::get('app.dueno_inicial');
+        $pdo->prepare('INSERT INTO usuarios (nombre, email, password_hash, rol) SELECT ?, ?, ?, ? FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM usuarios WHERE rol = \'admin\')')
+            ->execute([$d['nombre'], mb_strtolower($d['email']), password_hash($d['clave'], PASSWORD_DEFAULT), 'admin']);
+        if (Config::get('app.datos_demo')) {
             self::datosDemo($pdo);
         }
-        return $conexion['db'];
+
+        $archivo = RAIZ . '/config/local.php';
+        $config = ['db' => $conexion['db'], 'zona_horaria' => Config::get('app.zona_horaria')];
+        if (file_put_contents($archivo, "<?php\n// Generado automáticamente la primera vez. Datos privados: no los subas a un repositorio.\nreturn " . var_export($config, true) . ";\n") === false) {
+            throw new RuntimeException('No se pudo guardar config/local.php. Revisa los permisos de la carpeta config.');
+        }
+        foreach (['public/uploads/productos', 'public/uploads/banners', 'public/uploads/logo'] as $dir) {
+            if (!is_dir(RAIZ . '/' . $dir)) {
+                @mkdir(RAIZ . '/' . $dir, 0775, true);
+            }
+        }
     }
 
     /** Ejecuta cada sentencia de un archivo .sql por separado. */
-    public static function ejecutarSql(PDO $pdo, string $archivo): void
+    private static function ejecutarSql(PDO $pdo, string $archivo): void
     {
         $sql = (string) file_get_contents($archivo);
         $sql = (string) preg_replace('/^\s*--.*$/m', '', $sql);
@@ -73,7 +74,7 @@ final class Instalador extends Modelo
         }
     }
 
-    public static function datosDemo(PDO $pdo): void
+    private static function datosDemo(PDO $pdo): void
     {
         $cats = [
             ['Camisas', 'camisas', 'camisa', 1], ['Chaquetas', 'chaquetas', 'chaqueta', 2],
