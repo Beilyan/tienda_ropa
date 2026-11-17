@@ -1,0 +1,10 @@
+# Raíz del proyecto: todo se sirve desde public/ y las carpetas internas quedan cerradas
+Options -Indexes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Carpetas internas: nunca accesibles por URL
+    RewriteRule ^(config|core|models|controllers|views|helpers|routes|database|_respaldo[^/]*)(/|$) - [F,L]
+    # Lo que ya está dentro de public/ se deja pasar
+    RewriteCond %{REQUEST_URI} !/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
