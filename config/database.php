@@ -1,7 +1,7 @@
 <?php
 /* =====================================================
    CONEXIÓN A MYSQL
-   Los datos reales los escribe instalar.php en config/local.php
+   Los datos reales los escribe la preparación automática en config/local.php
    (archivo privado, excluido de git). También se pueden definir con
    variables de entorno: DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS.
    Devuelve null si la tienda aún no está instalada.

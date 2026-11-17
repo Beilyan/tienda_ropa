@@ -69,9 +69,19 @@ function calcular_ruta(): string
 }
 define('RUTA_ACTUAL', calcular_ruta());
 
-/* ---------- 4. Instalación, zona horaria y sesión ---------- */
-if (!Config::instalada() && RUTA_ACTUAL !== 'instalar.php' && !preg_match('#^assets/#', RUTA_ACTUAL)) {
-    redirigir('instalar.php');
+/* ---------- 4. Preparación automática, zona horaria y sesión ---------- */
+// Primera vez: sin pantalla de instalación, la tienda crea sola su base de datos y la cuenta del dueño.
+if (!Config::instalada() && !str_starts_with(RUTA_ACTUAL, 'assets/')) {
+    try {
+        Preparacion::ejecutar();
+    } catch (Throwable $ex) {
+        error_log('[tienda] Preparación: ' . $ex->getMessage());
+        http_response_code(503);
+        exit('<!DOCTYPE html><meta charset="utf-8"><body style="font-family:sans-serif;max-width:32rem;margin:15vh auto;padding:0 1rem"><h1>Casi listo</h1><p>'
+            . htmlspecialchars($ex instanceof RuntimeException ? $ex->getMessage() : 'No se pudo preparar la tienda. Revisa que MySQL esté encendido y recarga la página.') . '</p></body>');
+    }
+    header('Location: ' . ($_SERVER['REQUEST_URI'] ?? '/'));
+    exit;
 }
 date_default_timezone_set(Config::zonaHoraria());
 Sesion::iniciar();

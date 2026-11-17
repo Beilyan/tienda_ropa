@@ -32,6 +32,10 @@ return [
     'base_de_datos' => ['host' => '127.0.0.1', 'puertos' => [3306], 'nombre' => 'tienda_ropa', 'accesos' => [['root', 'mysql'], ['root', '']]],
     'por_pagina'    => ['catalogo' => 12, 'admin_productos' => 20, 'admin_pedidos' => 20],
     'subidas'       => ['max_bytes' => 5 * 1024 * 1024, 'max_lado' => 1400],
+    // Cuenta única del dueño, creada automáticamente la primera vez. Cámbiala luego en Panel > Ajustes > Tu cuenta.
+    'dueno_inicial' => ['nombre' => 'Dueño', 'email' => 'dueno@tienda.com', 'clave' => 'Dueno12345'],
+    // Cargar prendas, categorías, banner y cupón de ejemplo la primera vez (pon false para empezar con la tienda vacía).
+    'datos_demo'    => true,
     // Valores de respaldo: el dueño los cambia en Panel > Ajustes
     'ajustes_base'  => [
         'nombre_tienda' => 'MODA',
