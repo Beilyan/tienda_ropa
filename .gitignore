@@ -1,0 +1,9 @@
+# Datos privados: contraseña de MySQL (la crea instalar.php)
+config/local.php
+
+# Fotos que sube el dueño desde el panel
+public/uploads/productos/*
+public/uploads/banners/*
+public/uploads/logo/*
+!public/uploads/productos/.gitkeep
+!public/uploads/banners/.gitkeep

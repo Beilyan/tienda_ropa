@@ -1,0 +1,9 @@
+# Front controller: lo que no sea un archivo o carpeta real lo atiende index.php
+DirectoryIndex index.php
+Options -Indexes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>
